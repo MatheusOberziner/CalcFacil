@@ -1,70 +1,33 @@
 <template>
-  <div class="window-height window-width row justify-center items-center div-video">
-    <video
-      autoplay
-      muted
-      loop
-      playsinline
-      preload="metadata"
-      class="bg_video"
-    >
-      <source
-        src="../assets/video.mp4"
-        type="video/mp4"
-      >
+  <div class="row justify-center items-center" style="height: 89vh;">
+    <video autoplay muted loop playsinline preload="metadata" class="bg_video">
+      <source src="../assets/video.mp4" type="video/mp4">
     </video>
 
-    <div class="column">
-      <div class="row">
-        <q-card
-          square
-          bordered
-          class="shadow-24 q-pb-lg"
-          :style="{
-            width: $q.screen.lt.sm ? '90vw' :
-                   $q.screen.lt.md ? '70vw' :
-                   $q.screen.lt.lg ? '50vw' :
-                                     '40vw'
-          }"
-        >
-        <!-- style="width: 40vw;" -->
-          <q-card-section class="row justify-between">
-            <div class="row items-center q-gutter-md">
-              <q-avatar class="bg-primary" :style="$q.screen.lt.sm ? 'height: 1em; width: 1em;' : $q.screen.lt.lg ? 'height: 1.4em; width: 1.4em;' : 'height: 1.7em; width: 1.7em;'">
-                <q-img src="../assets/logo.svg" style="height: 70%; width: 70%;" />
-              </q-avatar>
+    <div class="col-12 row justify-center q-pt-md">
+      <q-card bordered class="q-pa-lg" style="background-color: #7d8792;" :style="{
+        width: $q.screen.lt.sm ? '90vw' :
+          $q.screen.lt.md ? '65vw' :
+            $q.screen.lt.lg ? '45vw' :
+              '35vw'
+      }">
+        <q-card-section class="q-py-none q-pb-sm" style="background-color: #bfebff;">
+          <q-input bordered readonly v-model="resultLabel" style="font-size: 24px;" />
+        </q-card-section>
 
-              <span class="text-primary text-bold" :class="$q.screen.lt.sm ? 'text-h5' : $q.screen.lt.md ? 'text-h4' : $q.screen.lt.lg ? 'text-h3' : 'text-h2 '">CalcFácil</span>
-            </div>
-
-            <div class="row items-center">
-              <q-btn outline color="primary" label="documentação" @click="showDocumentation()" />
-            </div>
-          </q-card-section>
-
-          <div class="col-12 row justify-center q-pt-md">
-            <q-card bordered class="q-pa-lg" style="width: 70%; background-color: #7d8792;">
-              <q-card-section class="q-py-none q-pb-sm" style="background-color: #bfebff;">
-                <q-input bordered readonly v-model="resultLabel" style="font-size: 24px;" />
-              </q-card-section>
-
-              <q-card-section class="q-px-none q-pb-none">
-                <div class="col-12 row">
-                  <template v-for="(button, index) in dataButtons" :key="index">
-                    <CustomButton :button="button" />
-                  </template>
-                </div>
-              </q-card-section>
-            </q-card>
+        <q-card-section class="q-px-none q-pb-none">
+          <div class="col-12 row">
+            <template v-for="(button, index) in dataButtons" :key="index">
+              <CustomButton :button="button" />
+            </template>
           </div>
-        </q-card>
-      </div>
+        </q-card-section>
+      </q-card>
     </div>
   </div>
 </template>
 <script>
 import CustomButton from 'src/components/CustomButton.vue'
-import DocumentationDialog from 'src/components/DocumentationDialog.vue'
 export default {
   name: 'IndexPage',
   components: { CustomButton },
@@ -103,12 +66,6 @@ export default {
     }
   },
   methods: {
-    showDocumentation () {
-      this.$q.dialog({
-        component: DocumentationDialog,
-        parent: this
-      })
-    },
     insert (char) {
       this.resultLabel += char
 
@@ -151,7 +108,7 @@ export default {
 }
 </script>
 <style>
-.bg_video{
+.bg_video {
   float: left;
   width: 100%;
   height: 100%;
