@@ -1,10 +1,14 @@
 <template>
   <q-dialog ref="dialog">
-    <div class="col-12 col-md-12" style="width: 60% !important;">
+    <div class="col-12 col-md-12" :style="{
+      width: $q.screen.lt.sm ? '90%' :
+        $q.screen.lt.md ? '70%' :
+          '60%'
+    }">
       <q-card>
         <q-card-section class="bg-white">
           <div class="row justify-between">
-            <div class="text-h3 text-bold text-primary q-pa-md">
+            <div class="text-bold text-primary q-pa-md" :class="$q.screen.lt.sm ? 'text-h5' : 'text-h4'">
               Documentação CalcFácil
             </div>
             <q-btn v-close-popup flat icon="close" />
